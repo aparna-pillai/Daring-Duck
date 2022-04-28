@@ -1,6 +1,59 @@
 import java.util.*;
 
 public class Tape {
+
+    private ArrayList<Character> current = new ArrayList<Character>(1);
+    private ArrayList<Character> right = new ArrayList<Character>(1);
+    private ArrayList<Character> left = new ArrayList<Character>(1);
+    private char cur;
+    public ArrayList<String> input = new ArrayList<String>();
+    private final static char Blank = '#';
+
+    public Tape(ArrayList<String> input){
+        right.add(Blank);
+        for(int i = input.size() - 1; i >= 0; i--){
+            right.add((Character) input.get(i));
+        }
+        cur = right.get(input.size()-1);
+        input.remove(input.size()-1);
+    }
+    public void moveLeft() {
+        right.add(cur);
+        if (left.isEmpty()) 
+            left.add(Blank); // increase size of tape if necessary
+        cur = left.get(left.size());       
+    }
+    
+    // move tape head right one position
+    public void moveRight() {
+        left.add(cur);
+        if (right.isEmpty()) 
+            right.add(Blank); // increase size of tape if necessary
+        cur = right.get(right.size()); 
+    }
+    
+    // set and get the symbol stored in the active cell
+    public char read(){ 
+        return cur;    
+    }
+    public void write(char symbol){ 
+        cur = symbol;  
+    }
+    
+
+    // return a reversed version of the string s
+    public static String reverse(String s) {
+        int N = s.length();
+        if (N <= 1) return s;
+        String left = s.substring(0, N/2);
+        String right = s.substring(N/2, N);
+        return reverse(right) + reverse(left);
+    }
+  
+    // show representation of tape
+    public String toString() {
+        return reverse(left.toString()) + "|" + current + "|" + right;
+=======
     private ArrayList<String> right = new ArrayList<>();
     private ArrayList<String> left = new ArrayList<>();
     private String marker = "#";
@@ -19,6 +72,7 @@ public class Tape {
     }
 
     public int oneCount(){
+
 
     }
 }
