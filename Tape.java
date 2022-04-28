@@ -1,82 +1,54 @@
 import java.util.*;
 
 public class Tape {
-
-    private ArrayList<Character> current = new ArrayList<Character>(1);
-    private ArrayList<Character> right = new ArrayList<Character>(1);
-    private ArrayList<Character> left = new ArrayList<Character>(1);
-    private char cur;
+    private ArrayList<Integer> right = new ArrayList<Integer>(1);
+    private int cur = 0;
     public ArrayList<String> input = new ArrayList<String>();
-    private final static char Blank = '#';
+    private final static int space = 0;
 
-    public Tape(ArrayList<String> input){
-        right.add(Blank);
+    public Tape(ArrayList<Integer> input){
+        right.add(space);
         for(int i = input.size() - 1; i >= 0; i--){
-            right.add(((CharSequence) input).charAt(i));
+            right.add(i);
             //"00000001010"
         }
         cur = right.get(input.size()-1);
         input.remove(input.size()-1);
     }
-    public void moveLeft() {
-        right.add(cur);
-        if (left.isEmpty()) 
-            left.add(Blank); // increase size of tape if necessary
-        cur = left.get(left.size());       
-    }
-    
-    // move tape head right one position
+
     public void moveRight() {
-        left.add(cur);
-        if (right.isEmpty()) 
-            right.add(Blank); // increase size of tape if necessary
-        cur = right.get(right.size()); 
+        cur++;
+        if (cur > right.size()){
+           right.add(space); 
+        }
+        //if (right.isEmpty()) 
+          //  right.add(space); 
+        //cur = right.get(right.size()); 
+    }
+
+    public void moveLeft() {
+        cur--;
+        if (cur < 0){
+            right.add(0,space);
+        }
+        //right.add(cur);
+        //if (left.isEmpty()) 
+          //  left.add(space); 
+        //cur = left.get(left.size());       
     }
     
-    // set and get the symbol stored in the active cell
-    public char read(){ 
+    public int read(){ 
         return cur;    
     }
     public void write(char symbol){ 
         cur = symbol;  
     }
     
-    // return a reversed version of the string s
-    public static String reverse(String s) {
-        int N = s.length();
-        if (N <= 1) return s;
-        String left = s.substring(0, N/2);
-        String right = s.substring(N/2, N);
-        return reverse(right) + reverse(left);
-    }
-  
-    // show representation of tape
     public String toString() {
-        return reverse(left.toString()) + "|" + current + "|" + right;
+        return right.toString();
 
     }
 
     //public int oneCount(){
-
     //}
 }
-
-
-
-/* 
-
-
-
-java is an ADT that represents an unbounded Turing machine tape. 
-It supports the following operations: 
-move tape head left, move tape head right, 
-read the symbol in the current cell, 
-and write a symbol to the current cell. 
-To implement it, we use two stacks 
-(one to store all of the symbols to the left of the tape head, 
-and one to the right). 
-To print out the contents of the tape, 
-we print out the reverse of the first stack, the current element, 
-then the second stack.
-
-*/

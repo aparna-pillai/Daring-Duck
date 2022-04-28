@@ -1,7 +1,9 @@
-public class TuringMachineRunner {
+import java.util.*;
+
+
+public class TuringMachineRunner{
     public static void main(String[] args) {
-        /**
-        Class called turingMachine which takes: arraylist of states, tape object?, and transition object?
-         */
+        Tape tape = new Tape({1,2,3,4});
+
     }
 }

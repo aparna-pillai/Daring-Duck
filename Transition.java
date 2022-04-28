@@ -1,14 +1,25 @@
 public class Transition {
-    public final static String DELIMITER = "|";
-    private State from, to;
-    private String read, write;
+    private State to;
+    private String read, write, direction;
 
-    public Transition(State from, State to, String read, String write) {
-        this.from = from;
+    public Transition(State to, String read, String write, String direction) {
         this.to = to;
         this.read = read;
         this.write = write;
+        this.direction = direction;
+        //needs to know if it goes left or right
     }
+
+    public String getDirection(){
+        if (direction == "right"){
+            return "right";
+        }
+        else{
+            return "left";
+        }
+    }
+
+    //get read and compare yourself
 
     public String getWrite(){ 
         return write; 
@@ -18,12 +29,6 @@ public class Transition {
     }
 
     public String toString() {
-        return "from: " + from + ", to: " + to + ", read: " + read + ", write: " + write;
+        return "to: " + to + ", read: " + read + ", write: " + write;
     }
 }
-
-/**
- * Each transition has the name of the initial state, 
- * the name of the final state, 
- * and the symbol to be written to the tape.
- */
