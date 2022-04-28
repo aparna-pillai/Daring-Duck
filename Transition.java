@@ -10,8 +10,12 @@ public class Transition {
         this.write = write;
     }
 
-    public String getWrite()    { return write; }
-    public State getNextState() { return to;    }
+    public String getWrite(){ 
+        return write; 
+    }
+    public State getNextState(){ 
+        return to;    
+    }
 
     public String toString() {
         return "from: " + from + ", to: " + to + ", read: " + read + ", write: " + write;

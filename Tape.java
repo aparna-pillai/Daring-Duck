@@ -12,7 +12,8 @@ public class Tape {
     public Tape(ArrayList<String> input){
         right.add(Blank);
         for(int i = input.size() - 1; i >= 0; i--){
-            right.add((Character) input.get(i));
+            right.add(((CharSequence) input).charAt(i));
+            //"00000001010"
         }
         cur = right.get(input.size()-1);
         input.remove(input.size()-1);
@@ -40,7 +41,6 @@ public class Tape {
         cur = symbol;  
     }
     
-
     // return a reversed version of the string s
     public static String reverse(String s) {
         int N = s.length();
@@ -53,28 +53,12 @@ public class Tape {
     // show representation of tape
     public String toString() {
         return reverse(left.toString()) + "|" + current + "|" + right;
-=======
-    private ArrayList<String> right = new ArrayList<>();
-    private ArrayList<String> left = new ArrayList<>();
-    private String marker = "#";
-    private char arrow;
-
-    public Tape(ArrayList<String> input){
-        right.add(marker);
-        for (int i = input.size()-1; i>=0; i--) {
-            right.add(input.get(i));
-        }
-        arrow = right.remove(input.get(0));
-    }
-
-    public String toString(){
-        return input;
-    }
-
-    public int oneCount(){
-
 
     }
+
+    //public int oneCount(){
+
+    //}
 }
 
 
