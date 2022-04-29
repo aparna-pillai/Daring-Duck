@@ -17,14 +17,40 @@ public class StateMachine{
     }
 
     public void dealWithTape(){
-        int stateNum = states.indexOf(currentState);
-        currentState = states.get(stateNum++);
-        for (int i = 0; i < (currentState.getTransition()).size(); i++)
-            if (input.read() == (currentState.getTransition()).indexOf(i)){
-                if 
+        /**
+        get the value at the current position in the tape
+        compare the value with the current state's transitions' read
+        if a match is found, move to the "to" state in read and assign currentState to the "to" state
+        replace the current value of the tape's current value with the "write" value in the transition
+        move tape to the left or right by changing current position in tape by what transition dictates
+        keep looping until a halt state is reached 
+
+        while (!currentState.isHalt())
+         */
+        int currentPosTape = 0;
+        while(!currentState.isHalt()){
+            char currentTapeVal = input.read();
+            ArrayList<Transition> transitions = currentState.getTransition();
+
+            //loop through transitions and check the reads of each state until match is found
+            for(int i = 0; i < transitions.size(); i++){
+                Transition tempTran = transitions.get(i);
+                //if the transition's read matches the current value of the tape
+                if(tempTran.getRead().equals(currentTapeVal)){
+                    currentState = tempTran.getNextState();
+                    input.write(tempTran.getWrite());
+
+                    //move the tape left or right
+                    if(tempTran.getDirection() == "left"){
+                        input.moveRight();
+                    }
+                    else{
+                        input.moveLeft();
+                    }
+                }
             }
-        input.moveLeft();
-        input.moveRight();
+        }
+        //after it halts?
     }
 }
 /**

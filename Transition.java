@@ -11,15 +11,20 @@ public class Transition {
     }
 
     public String getDirection(){
-        if (direction == "right"){
-            return "right";
-        }
-        else{
-            return "left";
-        }
+        return direction;
+
+        // if (direction == "right"){
+        //     return "right";
+        // }
+        // else{
+        //     return "left";
+        // }
     }
 
     //get read and compare yourself
+    public String getRead(){
+        return read;
+    }
 
     public String getWrite(){ 
         return write; 

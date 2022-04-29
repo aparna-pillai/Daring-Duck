@@ -18,6 +18,10 @@ public class State {
         return false;
     }
 
+    public boolean getType(){
+        return type;
+    }
+
     public ArrayList<Transition> getTransition(){
         return transitions;
     }

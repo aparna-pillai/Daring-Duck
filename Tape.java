@@ -1,12 +1,20 @@
 import java.util.*;
 
 public class Tape {
-    private ArrayList<Integer> right = new ArrayList<Integer>(1);
+    private ArrayList<Character> right = new ArrayList<Character>(1);
     private int cur = 0;
     public ArrayList<String> input = new ArrayList<String>();
-    private final static int space = 0;
+    private final static char space = '#';
 
-    public Tape(ArrayList<Integer> input){
+    public Tape(ArrayList<Character> input){
+        right.add(space);
+        for(int i = 0; i < input.size(); i++){
+            right.add(input.get(i));
+        }
+        cur = 0;
+    }
+
+    /** public Tape(ArrayList<Integer> input){
         right.add(space);
         for(int i = input.size() - 1; i >= 0; i--){
             right.add(i);
@@ -15,9 +23,10 @@ public class Tape {
         cur = right.get(input.size()-1);
         input.remove(input.size()-1);
     }
+    */
 
     public void moveRight() {
-        cur++;
+        cur = right.get(right.indexOf);
         if (cur > right.size()){
            right.add(space); 
         }
