@@ -18,7 +18,7 @@ public class State {
         return false;
     }
 
-    public boolean getType(){
+    public String getType(){
         return type;
     }
 

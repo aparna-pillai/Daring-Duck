@@ -4,10 +4,10 @@ public class Tape {
     private ArrayList<Character> right = new ArrayList<Character>(1);
     private int cur = 0;
     public ArrayList<String> input = new ArrayList<String>();
-    private final static char space = '#';
+    private final static char filler = '#';
 
     public Tape(ArrayList<Character> input){
-        right.add(space);
+        right.add(filler);
         for(int i = 0; i < input.size(); i++){
             right.add(input.get(i));
         }
@@ -26,9 +26,9 @@ public class Tape {
     */
 
     public void moveRight() {
-        cur = right.get(right.indexOf);
+        cur = right.get(cur++);
         if (cur > right.size()){
-           right.add(space); 
+           right.add(filler); 
         }
         //if (right.isEmpty()) 
           //  right.add(space); 
@@ -36,9 +36,9 @@ public class Tape {
     }
 
     public void moveLeft() {
-        cur--;
+        cur = right.get(cur++);
         if (cur < 0){
-            right.add(0,space);
+            right.add(0,filler);
         }
         //right.add(cur);
         //if (left.isEmpty()) 
