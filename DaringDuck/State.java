@@ -1,3 +1,5 @@
+package DaringDuck;
+
 import java.util.*;
 
 public class State {
@@ -10,12 +12,21 @@ public class State {
         this.type = type;
         this.transitions = transitions;
     }
+ //need a move transition that returns the next transition
+    public State(String name, String type) {
+        this.name = name;
+        this.type = type;
+    }
 
     public boolean isHalt(){ 
         if (type == "halt"){
             return true;
         }
         return false;
+    }
+
+    public String getName(){
+        return name;
     }
 
     public String getType(){

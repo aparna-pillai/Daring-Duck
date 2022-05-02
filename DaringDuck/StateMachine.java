@@ -1,3 +1,5 @@
+package DaringDuck;
+
 import java.util.*;
 
 public class StateMachine{
@@ -6,7 +8,7 @@ public class StateMachine{
     private State currentState;
     private Tape input;
 
-    public StateMachine(ArrayList<State> states, State currentState, Tape input) {
+    public StateMachine(ArrayList<State> states) {
         this.states = states;
         this.currentState = currentState;
         this.input = input;
@@ -15,7 +17,7 @@ public class StateMachine{
     public State getCurrentState(){
         return currentState;
     }
-
+ //move (input) --> get next transition based on the state from getCurrentState
     public void dealWithTape(){
         /**
         get the value at the current position in the tape
@@ -29,7 +31,7 @@ public class StateMachine{
          */
         int currentPosTape = 0;
         while(!currentState.isHalt()){
-            char currentTapeVal = input.read();
+            char currentTapeVal = input.get(input.read());
             ArrayList<Transition> transitions = currentState.getTransition();
 
             //loop through transitions and check the reads of each state until match is found

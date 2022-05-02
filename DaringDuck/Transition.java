@@ -1,7 +1,9 @@
-public class Transition {
-    private State to;
-    private String read, write, direction;
+package DaringDuck;
 
+public class Transition {
+    private String read, write, direction;
+    private State to;
+    
     public Transition(State to, String read, String write, String direction) {
         this.to = to;
         this.read = read;

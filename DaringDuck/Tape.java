@@ -1,15 +1,17 @@
+package DaringDuck;
+
 import java.util.*;
 
 public class Tape {
-    private ArrayList<Character> right = new ArrayList<Character>(1);
+    private ArrayList<String> tapeSymbols = new ArrayList<String>(1);
     private int cur = 0;
     public ArrayList<String> input = new ArrayList<String>();
-    private final static char filler = '#';
+    private final static String filler = "null";
 
-    public Tape(ArrayList<Character> input){
-        right.add(filler);
+    public Tape(ArrayList<String> input){
+        tapeSymbols.add(filler);
         for(int i = 0; i < input.size(); i++){
-            right.add(input.get(i));
+            tapeSymbols.add(input.get(i));
         }
         cur = 0;
     }
@@ -26,9 +28,9 @@ public class Tape {
     */
 
     public void moveRight() {
-        cur = right.get(cur++);
-        if (cur > right.size()){
-           right.add(filler); 
+        cur = cur+1;
+        if (cur == tapeSymbols.size()){
+           tapeSymbols.add(filler); 
         }
         //if (right.isEmpty()) 
           //  right.add(space); 
@@ -36,9 +38,9 @@ public class Tape {
     }
 
     public void moveLeft() {
-        cur = right.get(cur++);
+        cur = cur-1;
         if (cur < 0){
-            right.add(0,filler);
+            tapeSymbols.add(0,filler);
         }
         //right.add(cur);
         //if (left.isEmpty()) 
@@ -46,15 +48,16 @@ public class Tape {
         //cur = left.get(left.size());       
     }
     
-    public int read(){ 
-        return cur;    
+    public String read(){ 
+        return tapeSymbols.get(cur);    
     }
-    public void write(char symbol){ 
-        cur = symbol;  
+
+    public void write(String symbol){ 
+        tapeSymbols.set(cur, symbol);  
     }
     
     public String toString() {
-        return right.toString();
+        return tapeSymbols.toString();
 
     }
 
