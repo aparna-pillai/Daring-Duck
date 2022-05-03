@@ -6,11 +6,13 @@ public class StateMachine{
     private ArrayList<State> states = new ArrayList<State>();
     //private ArrayList<String> states = new ArrayList<String>(1);
     private State currentState;
+
     private Tape tape;
 
-    public StateMachine(ArrayList<State> states, State currentState) {
+    public StateMachine(ArrayList<State> states, State currentState, ArrayList<Character> input) {
         this.states = states;
         this.currentState = currentState;
+        tape = new Tape(input);
     }
 
     public State getCurrentState(){
@@ -18,6 +20,7 @@ public class StateMachine{
     }
  //move (input) --> get next transition based on the state from getCurrentState
     public void dealWithTape(){
+        System.out.println(currentState);
         /**
         get the value at the current position in the tape
         compare the value with the current state's transitions' read

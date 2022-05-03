@@ -7,21 +7,40 @@ public class TuringMachineRunner{
     static ArrayList<Character> list = new ArrayList<Character>();
     static Tape tape;
     static ArrayList<Transition> transitionsList1 = new ArrayList<Transition>();
+    static ArrayList<Transition> transitionsList2 = new ArrayList<Transition>();
+    static ArrayList<Transition> transitionsList3 = new ArrayList<Transition>();
     static ArrayList<State> statesList = new ArrayList<State>();
-    static State s0, s1;
+    static State s0, s1, s2, s3;
     static Transition t1, t2, t3;
     static StateMachine turingTest;
 
     public static void main(String[] args) {   
         list.add('0'); 
+        list.add('0');
+        list.add('0');  
         tape = new Tape(list);
+
+        s3 = new State("s2", "halt");
+
+        t3 = new Transition(s3, '0', '1', "right");
+        transitionsList3.add(t3);
+        s2 = new State("s2", "NH", transitionsList3);
+
+        t2 = new Transition(s2, '0', '1', "right");
+        transitionsList2.add(t2);
+        s1 = new State("s1", "NH", transitionsList2);
+        
         t1 = new Transition(s1, '0', '1', "right");
         transitionsList1.add(t1);
         s0 = new State("s0", "NH", transitionsList1);
+
         statesList.add(s0);
         statesList.add(s1);
-        turingTest = new StateMachine(statesList, s0);
+        statesList.add(s2);
+
+        turingTest = new StateMachine(statesList, s0, list);
         turingTest.dealWithTape();
+
 
         /**
         //s22222
@@ -52,7 +71,7 @@ public class TuringMachineRunner{
         for(int i = 0; i < 200; i++){
             
         }
-         */
+         
         int count = 0;
         for (State state : statesList){
             if (state.getType().equals("halt")){
@@ -64,7 +83,7 @@ public class TuringMachineRunner{
                 System.out.println(count);
             }
         }
-
+        */
 
         /* 
         list.add("0");
