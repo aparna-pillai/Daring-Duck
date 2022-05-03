@@ -3,12 +3,12 @@ package DaringDuck;
 import java.util.*;
 
 public class Tape {
-    private ArrayList<String> tapeSymbols = new ArrayList<String>(1);
+    private ArrayList<Character> tapeSymbols = new ArrayList<Character>(1);
     private int cur = 0;
     public ArrayList<String> input = new ArrayList<String>();
-    private final static String filler = "null";
+    private final static char filler = '#';
 
-    public Tape(ArrayList<String> input){
+    public Tape(ArrayList<Character> input){
         tapeSymbols.add(filler);
         for(int i = 0; i < input.size(); i++){
             tapeSymbols.add(input.get(i));
@@ -48,11 +48,11 @@ public class Tape {
         //cur = left.get(left.size());       
     }
     
-    public String read(){ 
+    public char read(){ 
         return tapeSymbols.get(cur);    
     }
 
-    public void write(String symbol){ 
+    public void write(char symbol){ 
         tapeSymbols.set(cur, symbol);  
     }
     

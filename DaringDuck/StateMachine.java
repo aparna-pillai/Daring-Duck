@@ -6,12 +6,11 @@ public class StateMachine{
     private ArrayList<State> states = new ArrayList<State>();
     //private ArrayList<String> states = new ArrayList<String>(1);
     private State currentState;
-    private Tape input;
+    private Tape tape;
 
-    public StateMachine(ArrayList<State> states) {
+    public StateMachine(ArrayList<State> states, State currentState) {
         this.states = states;
         this.currentState = currentState;
-        this.input = input;
     }
 
     public State getCurrentState(){
@@ -29,30 +28,36 @@ public class StateMachine{
 
         while (!currentState.isHalt())
          */
-        int currentPosTape = 0;
+        //int currentPosTape = 0;
         while(!currentState.isHalt()){
-            char currentTapeVal = input.get(input.read());
+            char currentTapeVal = tape.read();
             ArrayList<Transition> transitions = currentState.getTransition();
 
-            //loop through transitions and check the reads of each state until match is found
-            for(int i = 0; i < transitions.size(); i++){
-                Transition tempTran = transitions.get(i);
-                //if the transition's read matches the current value of the tape
-                if(tempTran.getRead().equals(currentTapeVal)){
-                    currentState = tempTran.getNextState();
-                    input.write(tempTran.getWrite());
+            Transition takeTran = getNextTransition(transitions, currentTapeVal);
+            if(takeTran == null){
+                break;
+            }
+            tape.write(takeTran.getWrite());
+            if(takeTran.getDirection().equals("left")){
+                tape.moveLeft();
+            }
+            else{
+                tape.moveRight();
+            }
+            currentState = takeTran.getNextState();
+        }
+        System.out.println(tape);
+    }
 
-                    //move the tape left or right
-                    if(tempTran.getDirection() == "left"){
-                        input.moveRight();
-                    }
-                    else{
-                        input.moveLeft();
-                    }
-                }
+    public Transition getNextTransition(ArrayList<Transition> transitions, char currentTapeVal){
+        for(int i = 0; i < transitions.size(); i++){
+            Transition tempTran = transitions.get(i);
+            //if the transition's read matches the current value of the tape
+            if(tempTran.getRead() == currentTapeVal) {
+                return tempTran;
             }
         }
-        //after it halts?
+        return null;
     }
 }
 /**
@@ -64,4 +69,3 @@ Create a tape object that can be moved left or right depending on what "currentS
  */
 
  //compare if input matches
-

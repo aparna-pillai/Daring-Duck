@@ -1,10 +1,11 @@
 package DaringDuck;
 
 public class Transition {
-    private String read, write, direction;
+    private String direction;
+    private char read, write; 
     private State to;
     
-    public Transition(State to, String read, String write, String direction) {
+    public Transition(State to, char read, char write, String direction) {
         this.to = to;
         this.read = read;
         this.write = write;
@@ -24,11 +25,11 @@ public class Transition {
     }
 
     //get read and compare yourself
-    public String getRead(){
+    public char getRead(){
         return read;
     }
 
-    public String getWrite(){ 
+    public char getWrite(){ 
         return write; 
     }
     public State getNextState(){ 
