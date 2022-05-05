@@ -4,12 +4,16 @@ import java.util.*;
 
 public class Tape {
     private ArrayList<Character> tapeSymbols = new ArrayList<Character>(1);
-    private int cur = 0;
+    private int cur = 1;
     public ArrayList<Character> input = new ArrayList<Character>();
+    private final static char space = '#';
     private final static char filler = 'N';
 
     public Tape(ArrayList<Character> input){
-        this.input = input;
+        tapeSymbols.add(space);
+        for (int i = 0; i < input.size(); i++){
+            tapeSymbols.add(input.get(i));
+        }
     }
 
     /** public Tape(ArrayList<Integer> input){
@@ -25,8 +29,8 @@ public class Tape {
 
     public void moveRight() {
         cur = cur+1;
-        if (cur == input.size()){
-           input.add(filler); 
+        if (cur == tapeSymbols.size()){
+           tapeSymbols.add(filler); 
         }
         //if (right.isEmpty()) 
           //  right.add(space); 
@@ -35,8 +39,8 @@ public class Tape {
 
     public void moveLeft() {
         cur = cur-1;
-        if (cur < 0){
-            input.add(0,filler);
+        if (cur <= 0){
+            tapeSymbols.add(0,filler);
         }
         //right.add(cur);
         //if (left.isEmpty()) 
@@ -45,17 +49,24 @@ public class Tape {
     }
     
     public char read(){ 
-        return input.get(cur);    
+        return tapeSymbols.get(cur);    
     }
 
     public void write(char symbol){ 
-        input.set(cur, symbol);  
+        tapeSymbols.set(cur, symbol);  
     }
     
     public String toString() {
-        return input.toString();
+        return tapeSymbols.toString();
     }
 
-    //public int oneCount(){
-    //}
+    public int oneCount(){
+        int count = 0;
+        for (int x = 0; x < tapeSymbols.size(); x++){
+            if (tapeSymbols.get(x) == '1'){
+                count++;
+            }
+        }
+        return count;
+    }
 }

@@ -1,12 +1,13 @@
 package DaringDuck;
 
 public class Transition {
-    private String direction;
+    private String direction, nameOfNextState;
     private char read, write; 
     private State to;
     
-    public Transition(State to, char read, char write, String direction) {
-        this.to = to;
+    public Transition(String nameOfNextState, char read, char write, String direction) {
+        //this.to = to;
+        this.nameOfNextState = nameOfNextState;
         this.read = read;
         this.write = write;
         this.direction = direction;
@@ -32,8 +33,8 @@ public class Transition {
     public char getWrite(){ 
         return write; 
     }
-    public State getNextState(){ 
-        return to;    
+    public String getNextState(){ 
+        return nameOfNextState;    
     }
 
     public String toString() {
