@@ -12,7 +12,7 @@ public class State {
         this.type = type;
         this.transitions = transitions;
     }
- //need a move transition that returns the next transition
+    
     public State(String name, String type) {
         this.name = name;
         this.type = type;
@@ -37,32 +37,8 @@ public class State {
         return transitions;
     }
     
-    /** 
-    public boolean isRegular(){ 
-        return type.equals("L"); 
-    }
-    public boolean right(){ 
-        return type.equals("R"); 
-    }
-    public boolean accept(){ 
-        return type.equals("A"); 
-    }
-    public boolean reject(){ 
-        return type.equals("Re"); 
-    }
-    
-    public String getName(){ 
-        return name; 
-    }
-
-     */ 
-
    public String toString() {
        return "Name: " + name + ", State type: " + type + ", Transitions: " + transitions;
    } 
   
 }
-
-/**
- * need to know name, whether its a halt or not; what transitions it has (arraylist of transitions)
- */
